@@ -95,4 +95,39 @@ document.addEventListener('DOMContentLoaded', () => {
             rooms.push(newRoom);
             localStorage.setItem('rooms', JSON.stringify(rooms));
             roomNameInput.value = '';
-       
+        }
+    }
+
+    function joinRoom() {
+        const joinPhoneNumber = joinPhoneNumberInput.value;
+        if (joinPhoneNumber.trim() !== '') {
+            const rooms = JSON.parse(localStorage.getItem('rooms')) || [];
+            for (const room of rooms) {
+                if (room.messages && room.messages.some((message) => message.user === joinPhoneNumber)) {
+                    currentRoom = room;
+                    updateMessageDisplay();
+                    break;
+                }
+            }
+            joinPhoneNumberInput.value = '';
+        }
+    }
+
+    function updateUserDisplay() {
+        const userDisplay = document.getElementById('userDisplay');
+        if (currentUser) {
+            userDisplay.textContent = `Logged in as: ${currentUser.phoneNumber}`;
+        } else {
+            userDisplay.textContent = 'Not logged in.';
+        }
+    }
+
+    function updateMessageDisplay() {
+        if (currentRoom && currentRoom.messages) {
+            const latestMessage = currentRoom.messages[currentRoom.messages.length - 1];
+            messageDisplay.textContent = `Received an audio message from ${latestMessage.user}`;
+        } else {
+            messageDisplay.textContent = 'Listening for messages...';
+        }
+    }
+});
