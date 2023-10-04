@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Offline Walkie-Talkie</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="app">
+        <div class="controls">
+            <div class="user">
+                <label for="phoneNumber">Phone Number:</label>
+                <input type="text" id="phoneNumber" placeholder="Enter phone number...">
+                <button id="registerUser">Register</button>
+            </div>
+            <div class="room">
+                <label for="roomName">Room Name:</label>
+                <input type="text" id="roomName" placeholder="Enter room name...">
+                <button id="createRoom">Create Room</button>
+            </div>
+            <div class="join-room">
+                <label for="joinPhoneNumber">Join a Room by Phone Number:</label>
+                <input type="text" id="joinPhoneNumber" placeholder="Enter phone number...">
+                <button id="joinRoom">Join</button>
+            </div>
+        </div>
+        <div class="walkie-talkie">
+            <div class="receiver">
+                <div class="speaker"></div>
+                <div class="display">
+                    <p id="message">Listening for messages...</p>
+                </div>
+            </div>
+            <div class="transmitter">
+                <div class="microphone">
+                    <button id="startRecord">Hold to Record</button>
+                    <button id="stopRecord" disabled>Release to Send</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
