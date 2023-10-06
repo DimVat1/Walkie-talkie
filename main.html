@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Walkie-Talkie Simulator</title>
+    <style>
+        #container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        #messages {
+            border: 1px solid #ccc;
+            padding: 10px;
+            max-width: 400px;
+            overflow-y: scroll;
+            height: 200px;
+        }
+
+        #input-box {
+            margin-top: 10px;
+        }
+
+        #room-input {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <h1>Walkie-Talkie</h1>
+        <div>
+            <label for="phone-number">Your Phone Number:</label>
+            <input type="text" id="phone-number" placeholder="Enter your phone number">
+            <button id="login-button">Login</button>
+        </div>
+        <div id="room-controls" style="display: none;">
+            <label for="room-name">Room Name:</label>
+            <input type="text" id="room-name" placeholder="Enter room name">
+            <button id="create-room">Create Room</button>
+            <label for="join-room">Join Room:</label>
+            <input type="text" id="join-room" placeholder="Enter room name">
+            <button id="join-button">Join Room</button>
+        </div>
+        <div id="chat" style="display: none;">
+            <div id="messages"></div>
+            <input type="text" id="message" placeholder="Type your message...">
+            <button id="send-button">Send</button>
+        </div>
+    </div>
+
+    <script>
+        const container = document.getElementById('container');
+        const phoneNumberInput = document.getElementById('phone-number');
+        const loginButton = document.getElementById('login-button');
+        const roomControls = document.getElementById('room-controls');
+        const roomNameInput = document.getElementById('room-name');
+        const createRoomButton = document.getElementById('create-room');
+        const joinRoomInput = document.getElementById('join-room');
+        const joinButton = document.getElementById('join-button');
+        const chat = document.getElementById('chat');
+        const messagesDiv = document.getElementById('messages');
+        const messageInput = document.getElementById('message');
+        const sendButton = document.getElementById('send-button');
+
+        let phoneNumber = null;
+        let currentRoom = null;
+
+        loginButton.addEventListener('click', () => {
+            phoneNumber = phoneNumberInput.value.trim();
+            if (phoneNumber !== '') {
+                roomControls.style.display = 'block';
+                container.removeChild(phoneNumberInput);
+                container.removeChild(loginButton);
+            }
+        });
+
+        createRoomButton.addEventListener('click', () => {
+            const roomName = roomNameInput.value.trim();
+            if (roomName !== '') {
+                currentRoom = roomName;
+                roomControls.style.display = 'none';
+                chat.style.display = 'block';
+                displayMessage('System', `You created room "${roomName}"`);
+            }
+        });
+
+        joinButton.addEventListener('click', () => {
+            const roomName = joinRoomInput.value.trim();
+            if (roomName !== '') {
+                currentRoom = roomName;
+                roomControls.style.display = 'none';
+                chat.style.display = 'block';
+                displayMessage('System', `You joined room "${roomName}"`);
+            }
+        });
+
+        sendButton.addEventListener('click', () => {
+            const message = messageInput.value.trim();
+            if (message !== '' && currentRoom !== null) {
+                displayMessage('You', message);
+                messageInput.value = '';
+                // Simulate receiving a message from the other user in the room.
+                simulateReceivedMessage('Friend', message);
+            }
+        });
+
+        function displayMessage(sender, message) {
+            const messageDiv = document.createElement('div');
+            messageDiv.innerHTML = `<strong>${sender}:</strong> ${message}`;
+            messagesDiv.appendChild(messageDiv);
+            messagesDiv.scrollTop = messagesDiv.scrollHeight;
+        }
+
+        function simulateReceivedMessage(sender, message) {
+            setTimeout(() => {
+                displayMessage(sender, message);
+            }, 2000);
+        }
+    </script>
+</body>
+</html>
