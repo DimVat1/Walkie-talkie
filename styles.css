@@ -1,70 +1,98 @@
+/* styles.css */
 body {
     font-family: Arial, sans-serif;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
+    background-color: #f4f4f4;
     margin: 0;
-    background-color: #f0f0f0;
+    padding: 0;
 }
 
-.app {
+#container {
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 100%;
-    max-width: 600px;
+    justify-content: center;
+    height: 100vh;
+}
+
+#login-box,
+#room-controls,
+#chat {
     background-color: #fff;
     border: 1px solid #ccc;
     padding: 20px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    max-width: 400px;
+    text-align: center;
+    animation: fadeIn 0.5s ease;
 }
 
-.controls {
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
+#container h1 {
+    font-size: 24px;
+    color: #333;
     margin-bottom: 20px;
 }
 
-.user, .room, .join-room {
-    flex: 1;
-    padding: 10px;
-    border: 1px solid #ccc;
-    background-color: #f0f0f0;
-    text-align: center;
-}
-
-.microphone {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-button[disabled] {
-    background-color: #ccc;
-    cursor: not-allowed;
-}
-
-.walkie-talkie {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+input[type="text"] {
     width: 100%;
-    background-color: #fff;
+    padding: 10px;
+    margin-bottom: 20px;
     border: 1px solid #ccc;
-    padding: 20px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    border-radius: 3px;
+    font-size: 16px;
+    transition: border-color 0.3s ease;
 }
 
-.speaker {
-    width: 100px;
-    height: 100px;
-    background-color: #333;
-    border-radius: 50%;
-    margin: 20px auto;
+input[type="text"]:focus {
+    border-color: #007bff;
 }
 
-.display {
-    margin-top: 20px;
+button {
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+textarea {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    font-size: 16px;
+    resize: vertical;
+}
+
+#send-button {
+    margin-top: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+#send-button:hover {
+    background-color: #0056b3;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
 }
