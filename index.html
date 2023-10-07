@@ -3,8 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="style.css">
     <title>Multi-User Voice Walkie-Talkie</title>
+    <style>
+        /* Add your CSS styles here */
+    </style>
 </head>
 <body>
     <div class="room-creation">
@@ -22,11 +25,12 @@
             <!-- Messages will be displayed here -->
         </div>
         <div class="controls">
-            <button id="record-button">Record</button>
-            <button id="stop-button">Stop</button>
+            <button id="record-button">🎙️ Record</button>
+            <button id="stop-button" style="display: none;">🔴 Stop</button>
             <button id="send-button" disabled>Send</button>
+            <input type="text" id="message-input" placeholder="Type your message">
         </div>
     </div>
-    <script src="app.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
