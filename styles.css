@@ -1,22 +1,70 @@
-/* Button Styles */
-        .controls button {
-            background-color: #3498db;
-            color: #fff;
-            padding: 10px 20px;
-            border: none;
-            cursor: pointer;
-            transition: background-color 0.3s ease, color 0.3s ease;
-        }
+/* Common button styles */
+.button {
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+    font-size: 16px;
+    transition: transform 0.2s ease-in-out;
+}
 
-        .controls button:hover {
-            background-color: #2980b9;
-        }
+/* Record button styles */
+.button-record {
+    background-color: #2196F3;
+    color: white;
+}
 
-        /* Chat Box Styles */
-        .chat-box {
-            background-color: #f2f2f2;
-            border: 1px solid #ccc;
-            padding: 10px;
-            overflow-y: auto;
-            max-height: 300px; /* Adjust the maximum height as needed */
-        }
+.button-record:hover {
+    background-color: #1976D2;
+    transform: scale(1.05);
+}
+
+.button-record:active {
+    background-color: #0D47A1;
+    transform: scale(0.95);
+}
+
+/* Stop button styles */
+.button-stop {
+    background-color: #F44336;
+    color: white;
+}
+
+.button-stop:hover {
+    background-color: #D32F2F;
+    transform: scale(1.05);
+}
+
+.button-stop:active {
+    background-color: #B71C1C;
+    transform: scale(0.95);
+}
+
+/* Send button styles */
+.button-send {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.button-send:hover {
+    background-color: #388E3C;
+    transform: scale(1.05);
+}
+
+.button-send:active {
+    background-color: #1B5E20;
+    transform: scale(0.95);
+}
+
+/* Input field styles */
+#message-input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    transition: border-color 0.2s ease-in-out;
+}
+
+#message-input:focus {
+    border-color: #2196F3;
+}
