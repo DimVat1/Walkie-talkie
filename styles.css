@@ -1,70 +1,103 @@
-/* Common button styles */
-.button {
-    padding: 10px 20px;
-    border: none;
-    cursor: pointer;
-    border-radius: 4px;
-    font-size: 16px;
-    transition: transform 0.2s ease-in-out;
+/* Reset some default styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-/* Record button styles */
-.button-record {
-    background-color: #2196F3;
-    color: white;
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f2f2f2;
 }
 
-.button-record:hover {
-    background-color: #1976D2;
-    transform: scale(1.05);
+#container {
+    display: flex;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
 }
 
-.button-record:active {
-    background-color: #0D47A1;
-    transform: scale(0.95);
+#sidebar {
+    flex: 1;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 20px;
 }
 
-/* Stop button styles */
-.button-stop {
-    background-color: #F44336;
-    color: white;
+h1 {
+    font-size: 24px;
+    margin-bottom: 10px;
 }
 
-.button-stop:hover {
-    background-color: #D32F2F;
-    transform: scale(1.05);
+#chat-box {
+    max-height: 400px;
+    overflow-y: scroll;
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-bottom: 10px;
 }
 
-.button-stop:active {
-    background-color: #B71C1C;
-    transform: scale(0.95);
+#message-input-container {
+    display: flex;
+    gap: 10px;
 }
 
-/* Send button styles */
-.button-send {
-    background-color: #4CAF50;
-    color: white;
-}
-
-.button-send:hover {
-    background-color: #388E3C;
-    transform: scale(1.05);
-}
-
-.button-send:active {
-    background-color: #1B5E20;
-    transform: scale(0.95);
-}
-
-/* Input field styles */
 #message-input {
+    flex: 1;
     padding: 10px;
     border: 1px solid #ccc;
-    border-radius: 4px;
-    font-size: 16px;
-    transition: border-color 0.2s ease-in-out;
+    border-radius: 5px;
 }
 
-#message-input:focus {
-    border-color: #2196F3;
+#send-button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#main-content {
+    flex: 2;
+    margin-left: 20px;
+    padding: 20px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#walkie-talkie {
+    text-align: center;
+}
+
+h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+#record-button {
+    font-size: 36px;
+    background-color: #ff4f4f;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    margin-bottom: 20px;
+}
+
+#create-room,
+#join-room,
+#room-name,
+#room-code {
+    padding: 10px;
+    margin: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
 }
