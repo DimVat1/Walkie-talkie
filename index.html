@@ -28,5 +28,50 @@
         </div>
     </div>
     <script src="app.js"></script>
+<script>
+    const socket = new WebSocket('ws://localhost:3000'); // Replace with your server address
+
+    // Handle WebSocket events
+    socket.addEventListener('open', (event) => {
+        console.log('Connected to server.');
+    });
+
+    socket.addEventListener('message', (event) => {
+        const data = JSON.parse(event.data);
+
+        if (data.type === 'message') {
+            // Handle incoming text messages
+            displayMessage(`${data.username}: ${data.content}`);
+        } else if (data.type === 'audio') {
+            // Handle incoming audio recordings
+            displayAudioMessage(data.username, data.audioData);
+        }
+    });
+
+    // Add your client-side logic for joining rooms, recording audio, and sending messages.
+
+    function displayMessage(message) {
+        const chatBox = document.getElementById('chat-box');
+        const messageElement = document.createElement('div');
+        messageElement.textContent = message;
+        chatBox.appendChild(messageElement);
+    }
+
+    function displayAudioMessage(username, audioData) {
+        const chatBox = document.getElementById('chat-box');
+        const audioElement = document.createElement('audio');
+        audioElement.controls = true;
+
+        const blob = new Blob([audioData], { type: 'audio/wav' });
+        audioElement.src = URL.createObjectURL(blob);
+
+        const audioMessageElement = document.createElement('div');
+        audioMessageElement.textContent = `${username} sent an audio message:`;
+        audioMessageElement.appendChild(audioElement);
+
+        chatBox.appendChild(audioMessageElement);
+    }
+</script>
+
 </body>
 </html>
