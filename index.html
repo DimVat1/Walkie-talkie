@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Multi-User Voice Walkie-Talkie</title>
+</head>
+<body>
+    <div class="room-creation">
+        <h2>Create a Room</h2>
+        <input type="text" id="room-name" placeholder="Room Name">
+        <button id="create-room">Create Room</button>
+    </div>
+    <div class="room-join">
+        <h2>Join a Room</h2>
+        <input type="text" id="room-code" placeholder="Room Code">
+        <button id="join-room">Join Room</button>
+    </div>
+    <div class="walkie-talkie" id="walkie-talkie">
+        <div class="chat-box" id="chat-box">
+            <!-- Messages will be displayed here -->
+        </div>
+        <div class="controls">
+            <button id="record-button">Record</button>
+            <button id="stop-button">Stop</button>
+            <button id="send-button" disabled>Send</button>
+        </div>
+    </div>
+    <script src="app.js"></script>
+</body>
+</html>
