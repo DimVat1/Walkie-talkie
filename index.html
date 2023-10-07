@@ -4,31 +4,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">
-    <title>Multi-User Voice Walkie-Talkie</title>
-    <style>
-        /* Add your CSS styles here */
-    </style>
+    <title>Walkie-Talkie</title>
 </head>
 <body>
-    <div class="room-creation">
-        <h2>Create a Room</h2>
-        <input type="text" id="room-name" placeholder="Room Name">
-        <button id="create-room">Create Room</button>
-    </div>
-    <div class="room-join">
-        <h2>Join a Room</h2>
-        <input type="text" id="room-code" placeholder="Room Code">
-        <button id="join-room">Join Room</button>
-    </div>
-    <div class="walkie-talkie" id="walkie-talkie">
-        <div class="chat-box" id="chat-box">
-            <!-- Messages will be displayed here -->
+    <div id="container">
+        <div id="sidebar">
+            <h1>Chat Room</h1>
+            <div id="chat-box"></div>
+            <div id="message-input-container">
+                <textarea id="message-input" placeholder="Type your message..."></textarea>
+                <button id="send-button">Send</button>
+            </div>
         </div>
-        <div class="controls">
-            <button id="record-button">🎙️ Record</button>
-            <button id="stop-button" style="display: none;">🔴 Stop</button>
-            <button id="send-button" disabled>Send</button>
-            <input type="text" id="message-input" placeholder="Type your message">
+        <div id="main-content">
+            <div id="walkie-talkie">
+                <h2>Your Walkie-Talkie</h2>
+                <button id="record-button">🎙️</button>
+                <button id="create-room">Create Room</button>
+                <button id="join-room">Join Room</button>
+                <input type="text" id="room-name" placeholder="Enter Room Name">
+                <input type="text" id="room-code" placeholder="Enter Room Code">
+            </div>
         </div>
     </div>
     <script src="app.js"></script>
