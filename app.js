@@ -5,7 +5,6 @@ document.addEventListener("DOMContentLoaded", function () {
     const roomCodeInput = document.getElementById("room-code");
     const walkieTalkie = document.getElementById("walkie-talkie");
     const recordButton = document.getElementById("record-button");
-    const stopButton = document.getElementById("stop-button");
     const sendButton = document.getElementById("send-button");
     const messageInput = document.getElementById("message-input");
     const chatBox = document.getElementById("chat-box");
@@ -16,11 +15,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
     let peerConnection;
     let dataChannel;
+    let roomJoined = false; // Flag to track if the user has joined or created a room
 
     createRoomButton.addEventListener("click", createRoom);
     joinRoomButton.addEventListener("click", joinRoom);
     recordButton.addEventListener("click", toggleRecording);
-    stopButton.addEventListener("click", stopRecording);
     sendButton.addEventListener("click", sendMessage);
 
     function createRoom() {
@@ -49,10 +48,16 @@ document.addEventListener("DOMContentLoaded", function () {
         walkieTalkie.style.display = "block";
         createRoomButton.disabled = true;
         joinRoomButton.disabled = true;
+        roomJoined = true; // Set the flag to indicate the user has joined or created a room
         createPeerConnection();
     }
 
     function toggleRecording() {
+        if (!roomJoined) {
+            alert("You must join or create a room first.");
+            return;
+        }
+
         if (!isRecording) {
             startRecording();
         } else {
@@ -81,8 +86,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
                 mediaRecorder.start();
                 isRecording = true;
-                recordButton.textContent = "Stop Recording";
-                sendButton.disabled = true; // Disable "Send" while recording
+                recordButton.textContent = "🔴";
             })
             .catch(function (error) {
                 console.error("Error accessing microphone: " + error);
@@ -93,18 +97,31 @@ document.addEventListener("DOMContentLoaded", function () {
         if (mediaRecorder && mediaRecorder.state === "recording") {
             mediaRecorder.stop();
             isRecording = false;
-            recordButton.textContent = "Record";
-            sendButton.disabled = false; // Re-enable "Send" after stopping
+            recordButton.textContent = "🎙️";
         }
     }
 
     function sendMessage() {
-        const messageText = messageInput.value.trim();
+        if (!roomJoined) {
+            alert("You must join or create a room first.");
+            return;
+        }
 
-        if (messageText !== "") {
-            displayMessage(messageText);
-            messageInput.value = ""; // Clear the input field
-            sendTextMessage(messageText); // Send the text message
+        const messageText = messageInput.value.trim();
+        const audioBlob = audioChunks.length > 0 ? new Blob(audioChunks, { type: "audio/wav" }) : null;
+
+        if (messageText !== "" || audioBlob) {
+            if (messageText !== "") {
+                displayMessage(`You: ${messageText}`);
+                messageInput.value = ""; // Clear the input field
+                sendTextMessage(messageText); // Send the text message
+            }
+
+            if (audioBlob) {
+                displayAudioMessage(audioBlob);
+                audioChunks = [];
+                sendAudioData(audioBlob); // Send the audio recording
+            }
         }
     }
 
@@ -126,6 +143,26 @@ document.addEventListener("DOMContentLoaded", function () {
         chatBox.appendChild(messageElement);
     }
 
+    // Placeholder functions for WebRTC-related logic
+    function createPeerConnection() {
+        // Implement the logic to create a WebRTC peer connection
+        // Configure ICE servers, create a data channel, and handle other WebRTC setup
+    }
+
+    function sendAudioData(audioBlob) {
+        // Implement the logic to send audio data to the other peer
+        // You'll need to use the dataChannel to send audioBlob to the peer
+    }
+
+    function sendTextMessage(text) {
+        // Implement the logic to send a text message to the other peer
+        // You'll need to use the dataChannel to send text messages to the peer
+    }
+
+    function handleIncomingIceCandidate(candidate) {
+        // Implement the logic to handle incoming ICE candidates
+    }
+
     // Add other WebRTC-related functions and logic here
     // Replace these placeholder functions with actual implementations
     function sendIceCandidate(candidate) {
@@ -140,25 +177,5 @@ document.addEventListener("DOMContentLoaded", function () {
         // Implement the logic to handle an incoming answer
     }
 
-    function sendAudioData(audioBlob) {
-        // Implement the logic to send audio data to the other peer
-        // You'll need to use the dataChannel to send audioBlob to the peer
-    }
-
-    function sendTextMessage(text) {
-        // Implement the logic to send a text message to the other peer
-        // You'll need to use the dataChannel to send text messages to the peer
-    }
-
-    function createPeerConnection() {
-        // Implement the logic to create a WebRTC peer connection
-        // Configure ICE servers, create data channel, and handle other WebRTC setup
-    }
-
-    // Handle incoming ICE candidates from the other peer
-    function handleIncomingIceCandidate(candidate) {
-        // Implement the logic to handle incoming ICE candidates
-    }
-
-    // Implement the rest of your WebRTC-related code here
+    // Continue with the rest of your WebRTC-related code...
 });
